@@ -43,15 +43,14 @@ for i in range(1,11): # start at one, go up to 11 because ebay starts counting i
     prices = soup.select('.s-item__price')
     for price in prices:
         print('price=', price.text)
-    '''
 
     statuses = soup.select('.SECONDARY_INFO')
     for status in statuses:
         print('status=', status.text)
+    '''
 
     # do the same thing above for status and add below
 
-    '''
     # combine into one step to associate item with price
     # extract item boxes rather than just titles/prices
     boxes = soup.select('li.s-item--watch-at-corner.s-item')
@@ -63,17 +62,19 @@ for i in range(1,11): # start at one, go up to 11 because ebay starts counting i
         for title in titles:
             # print('item=', title.text)
             result['title'] = title.text # using title because that's what we're calling it in the assignment
-        prices = box.select('.s-title__price') # extracting price css selector inside of box, if keep at soup.select it will browse the entire website still 
+        prices = box.select('.s-item__price') # extracting price css selector inside of box, if keep at soup.select it will browse the entire website still 
         for price in prices: # not showing up for some reason? 
             # print('price=', price.text)
             result['price'] = price.text
         statuses = box.select('.SECONDARY_INFO')
+        for status in statuses:
             result['status'] = status.text
-        # print('result=',result)
+            # print('status=', status.text)
+            # print('result=',result)
         results.append(result)
 
     print('len(results)=',len(results))
-    '''
+    
 # 3 last steps for HW:
 # 1) make this work for top 10 results pages not just the first one
 # 2) also get the status: .SECONDARY_INFO 
