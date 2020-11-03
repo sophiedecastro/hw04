@@ -2,8 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 
 # keyword = 'drill'
-keyword = 'claremont mckenna' # change search term by changing it here
+# keyword = 'claremont mckenna' # change search term by changing it here
 # page_number='1' # start at 1, must write as a string for concatenation
+keyword = 'speaker'
 results = [] # a list of dictionaries // want results to be a total number includeng previous pages, not restart each time
 
 # create header with user agent to show that actual person not bot trying to access website 
@@ -44,8 +45,13 @@ for i in range(1,11): # start at one, go up to 11 because ebay starts counting i
         print('price=', price.text)
     '''
 
+    statuses = soup.select('.SECONDARY_INFO')
+    for status in statuses:
+        print('status=', status.text)
+
     # do the same thing above for status and add below
 
+    '''
     # combine into one step to associate item with price
     # extract item boxes rather than just titles/prices
     boxes = soup.select('li.s-item--watch-at-corner.s-item')
@@ -61,16 +67,19 @@ for i in range(1,11): # start at one, go up to 11 because ebay starts counting i
         for price in prices: # not showing up for some reason? 
             # print('price=', price.text)
             result['price'] = price.text
+        statuses = box.select('.SECONDARY_INFO')
+            result['status'] = status.text
         # print('result=',result)
         results.append(result)
 
     print('len(results)=',len(results))
-
+    '''
 # 3 last steps for HW:
 # 1) make this work for top 10 results pages not just the first one
 # 2) also get the status: .SECONDARY_INFO 
 # 3) output to json file 
 
+# DONE?
 # task 3):
 import json
 j = json.dumps(results)
@@ -79,7 +88,9 @@ with open('items.json','w')as f: # makes json file in same folder
 # print('j=',j)
 # returns a list of dictionaries 
 
+# NOT DONE
 # task 2): just add another soup select for status using .SECONDARY_INFO 
 
+# DONE?
 # task 1): work for ten pages
 # change the page number range as seen above
