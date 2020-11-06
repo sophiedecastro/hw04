@@ -78,7 +78,7 @@ for i in range(1,11): # start at one, go up to 11 because ebay starts counting i
 # 2) also get the status: .SECONDARY_INFO 
 # 3) output to json file 
 
-# DONE?
+# DONE
 # task 3):
 import json
 j = json.dumps(results)
@@ -87,9 +87,9 @@ with open('items.json','w')as f: # makes json file in same folder
 # print('j=',j)
 # returns a list of dictionaries 
 
-# NOT DONE
+# DONE
 # task 2): just add another soup select for status using .SECONDARY_INFO 
 
-# DONE?
+# DONE
 # task 1): work for ten pages
 # change the page number range as seen above
